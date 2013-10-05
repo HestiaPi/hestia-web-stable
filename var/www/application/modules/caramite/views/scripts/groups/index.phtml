@@ -1,0 +1,173 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#tableContainer').jtable({
+            title: 'Groups',
+            actions: {
+                listAction: '/api/groups/list',
+                createAction: '/api/groups/add',
+                updateAction: '/api/groups/add',
+                deleteAction: '/api/groups/delete',
+            },
+            fields: {
+                id: {
+                    key: true,
+                    create: false,
+                    edit: false,
+                    list: false
+                },
+                groups: {
+                    title: '',
+                    width: '3%',
+                    edit: false,
+                    create: false,
+                    display: function (data) {
+                        //Create an image that will be used to open child table
+                     var $img = $('<img class="table_button" src="/images/calendar.png" title="Show Group" />');
+                        //Open child table when user clicks the image
+                        $img.click(function () {
+                            $('#tableContainer').jtable('openChildTable',
+                                    $img.closest('tr'),
+                                    {
+                            	title: 'Schedules',
+                                actions: {
+                                    listAction: '/api/schedules/list/group/' + data.record.id,
+                                    createAction: '/api/schedules/add',
+                                    updateAction: '/api/schedules/add',
+                                    deleteAction: '/api/schedules/delete'
+                                },
+                                fields: {
+                                    id: {
+                                        key: true,
+                                        create: false,
+                                        edit: false,
+                                        list: false
+                                    },
+                                    group: {
+                                        title: 'Group',
+                                        list: false,
+                                        options: '/api/groups/list/display/options',
+                                        defaultValue: data.record.id,
+                                    },
+                                    day: {
+                                        title: 'Day',
+                                        options: '/api/days/list',
+                                    },
+                                    hourOn: {
+                                        title: 'Hour On',
+                                        options: { <?php for($i=0;$i<24;$i++){echo"'$i':'$i',";}?> }
+                                    },
+                                    minuteOn: {
+                                        title: 'Minute On',
+                                        options: { <?php for($i=0;$i<60;$i++){echo"'$i':'$i',";}?> }
+                                    },
+                                    hourOff: {
+                                        title: 'Hour Off',
+                                        options: { <?php for($i=0;$i<24;$i++){echo"'$i':'$i',";}?> }
+                                    },
+                                    minuteOff: {
+                                        title: 'Minute Off',
+                                        options: { <?php for($i=0;$i<60;$i++){echo"'$i':'$i',";}?> }
+                                    },
+                                    heatingOn: {
+                                        title: 'Heating On',
+                                        type: 'checkbox',
+                                        values: { '0': 'Off', '1': 'On' },
+                                    },
+                                    waterOn: {
+                                        title: 'Water On',
+                                        type: 'checkbox',
+                                        values: { '0': 'Off', '1': 'On' },
+                                    },
+                                    enabled: {
+                                        title: 'Enabled?',
+                                        type: 'checkbox',
+                                        values: { '0': 'No', '1': 'Yes' },
+                                    }
+								}
+                                },function (data) { //opened handler
+                                    data.childTable.jtable('load');
+                                });
+                        });
+                        return $img;
+                    }
+                },
+                name: {
+                    title: 'Name',
+                    width: '75%',
+                },
+                enable: {
+					title: 'Enable',
+					edit: false,
+                    create: false,
+                    width: '15%',
+                    display: function (data) {
+                        //Create an image that will be used to open child table
+						var $img = $('<img class="table_button" src="/images/circle_green.png" title="enable" />');
+						var $loading = "Setting...";
+						var $dialog = $('<div></div>')
+							.html($loading)
+							.dialog({
+								autoOpen: false,
+								title: 'Changing Group Status',
+								close: function(ev, ui) { $(this).html($loading); }
+							});
+						
+                        $img.click(function () {
+    						$.getJSON("/api/schedules/setenabled/group/" + data.record.id + "/value/1", function(json) {
+    							if (json.Result == "OK") {
+    								$dialog.html("Group enabled");
+    							} else {
+    								$dialog.html("Oops something went wrong: " + json.Message);
+    							}
+    						});
+    						$('#tableContainer').jtable('reload');
+    						$dialog.dialog('open');
+    						// prevent the default action, e.g., following a link
+    						return false;
+						});
+						return $img;
+					}
+                },
+                disable: {
+					title: 'Disable',
+					edit: false,
+                    create: false,
+                    width: '15%',
+                    display: function (data) {
+                        //Create an image that will be used to open child table
+						var $img = $('<img class="table_button" src="/images/circle_red.png" title="disable" />');
+						var $loading = "Setting...";
+						var $dialog = $('<div></div>')
+							.html($loading)
+							.dialog({
+								autoOpen: false,
+								title: 'Changing Group Status',
+								close: function(ev, ui) { $(this).html($loading); }
+							});
+						
+                        $img.click(function () {
+    						$.getJSON("/api/schedules/setenabled/group/" + data.record.id + "/value/0", function(json) {
+    							if (json.Result == "OK") {
+    								$dialog.html("Group disabled");
+    							} else {
+    								$dialog.html("Oops something went wrong: " + json.Message);
+    							}
+    						});
+    						$('#tableContainer').jtable('reload');
+    						$dialog.dialog('open');
+    						// prevent the default action, e.g., following a link
+    						return false;
+						});
+						return $img;
+					}
+                },
+            }
+        });
+ 
+        $('#tableContainer').jtable('load');
+    });
+</script>
+
+
+<div id="tableContainer"></div>
+<?php echo $this->partial('partials/multiadd.phtml'); ?>

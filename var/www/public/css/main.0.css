@@ -1,0 +1,137 @@
+/* Layout */
+#wrapper {
+	margin: 2em auto;
+	width: 100%;
+	border:0.1em solid #ef7227;
+}
+#navbar, #content {border-bottom:0.1em solid #ef7227;}
+#navbar { 
+	width: 100%;
+	height: 1.5em;
+	padding: 0;
+	margin: 0;
+	right: 0;
+	top: 0;
+	position: fixed;
+	z-index: 9999;
+	
+}
+#navbarInner {max-width: 900px; ; margin: 0 auto;}
+#content { 
+	width: 95%;
+	padding: 1em 0 1em 0;
+	margin: 0 auto;
+	max-width: 900px;
+}
+#footer { 
+	padding: 10px;
+	border: 0px solid #ef7227;
+	margin: 0;
+
+}
+.container { width:100%; height:100% }
+
+/* Styles */
+body 
+{
+	background:url("/images/layout/background.png") repeat scroll left top grey;
+	font-family: arial, tahoma, sans-serif;
+	font-size: 0.8em;
+	text-align: justify;
+	color: #7e8799;
+}
+body	a {text-decoration:none}
+body	a:link {color: #7e8799 }
+body	a:visited {color: #7e8799 }
+body	a:hover {color: #7e8799; }
+body	img {border: none; }
+
+#wrapper {background-color: white;}
+#header {
+	background-color: white;
+	color: #7e8799;
+}
+#header a {color: #ef7227;}
+#navbar {
+	background-color: #464646;
+	color: #CCCCCC;
+	text-align: right;
+	font-size: 1.2em;
+	box-shadow: 0 8px 6px -6px black;
+}
+#navbar ol, ul {
+	list-style: none outside none;
+}
+#navbar li {
+    float: right;
+    position: relative;
+}
+#navbar a {
+    color: #EEEEEE;
+    display: block;
+	line-height: 1.5em;
+    padding: 0 0.8em;
+    text-decoration: none;
+}
+#navbar li:hover > a, #navbar ul ul *:hover > a, #navbar a:focus {
+    background: none repeat scroll 0 0 #EFEFEF;
+}
+#navbar li:hover > a, #navbar a:focus {
+    background: -moz-linear-gradient(#F9F9F9, #E5E5E5) repeat scroll 0 0 transparent;
+    color: #373737;
+}
+#content { 
+	background: white;
+}
+#footer {
+	font-size: 0.8em;
+	text-align: center;
+}
+#footer a { text-decoration:underline; }
+h1 {
+	color:#ef7227;
+	font-size:1.4em;
+	font-weight:bold;
+	text-align:center;
+}
+.orange {
+	color:#ef7227;
+	font-size:1.4em;
+	font-weight:bold;
+}
+
+.boost_table img{
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+.boost_table {
+	font-size: 1.5em;
+}
+
+.boost_table td {
+	padding: 0 0.2em;
+}
+
+.table_button {
+	cursor: pointer;
+	height: 20px;
+	width: 20px;
+}
+
+.small {
+	font-size: 0.8em;
+}
+
+#heating, #water {
+	height: 40px;
+	width: 40px;
+}
+
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }

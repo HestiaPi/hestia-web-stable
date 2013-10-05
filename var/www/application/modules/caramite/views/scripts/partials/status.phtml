@@ -1,0 +1,68 @@
+<?php
+exec('/opt/boilercontrol/scripts/gettemperature.sh',$return);
+$temp_3f=$return[0]/1000;
+$temp_2f = number_format($temp_3f, 2, '.', '');
+?>
+<div class="boost_table">
+<table>
+<tr>
+	<td>Time:</td>
+	<td><span id="clock"></span></td>
+</tr>
+<tr>
+  <td>Temperature:</td>
+  <td><span id="temperature"><?php echo $temp_2f?>°C</span></td><!--TODO: Symbol needs to be dynamically read from the db-->
+</tr>
+</table>
+<table>
+<tr>
+	<td>Hot Water:</td>
+	<td><img id="water" src="/images/circle_red.png" /></td>
+	<td class="small">Boost:</td>
+	<td class="small"><img id="waterBoost" src="/images/off.png" /> &nbsp;
+		<span id="waterBoostTime"></span></td>
+</tr>
+<tr>
+	<td>Heating:</td>
+	<td><img id="heating" src="/images/circle_red.png" /></td>
+	<td class="small">Boost:</td>
+	<td class="small"><img id="heatingBoost" src="/images/off.png" /> &nbsp;
+		<span id="heatingBoostTime"></span></td>
+</tr>
+</table>
+</div>
+
+<div id="heating-boost-dialog" title="Set Heating Boost">
+  <form>
+  <fieldset>
+    <label for="heatTime">Boost Time:</label>
+    <select name="time" id="heatTime">
+    	<option value="1">1 minute</option> <!-- TODO: Remove -->
+    	<option value="2">2 minutes</option> <!-- TODO: Remove -->
+    	<?php 
+    	$default = 60;
+    	for ($i = 10; $i <= 180; $i = $i + 10) :
+    	?>
+    	<option value="<?php echo $i?>" <?php if ($i == $default) echo 'selected="selected"'?>><?php echo $i?> minutes</option>
+    	<?php endfor; ?>
+    </select>
+  </fieldset>
+  </form>
+</div>
+
+<div id="water-boost-dialog" title="Set Water Boost">
+  <form>
+  <fieldset>
+    <label for="waterTime">Boost Time:</label>
+    <select name="time" id="waterTime">
+      <option value="1">1 minute</option> <!-- TODO: Remove -->
+    	<?php 
+    	$default = 60;
+    	for ($i = 10; $i <= 180; $i = $i + 10) :
+    	?>
+    	<option value="<?php echo $i?>" <?php if ($i == $default) echo 'selected="selected"'?>><?php echo $i?> minutes</option>
+    	<?php endfor; ?>
+    </select>
+  </fieldset>
+  </form>
+</div>

@@ -1,0 +1,160 @@
+<div id="accordion">
+	<?php $this->headScript()->appendFile('/js/jquery.form.js');?>
+	<?php $this->headScript()->appendFile('/js/multiAdd.js');?>
+	<h3><a href="#">Add multiple days at once</a></h3>
+	<div>
+		<form id="multiAdd" action="/api/schedules/multiadd/">
+		<table>
+		<tr><td>
+		Group</td><td>
+		<select name="group">
+		<?php $groups = $this->Group()->getGroups();
+		foreach ($groups as $group) :?>
+			<option value="<?php echo $group->id ?>"><?php echo $group->name ?></option>
+		<?php endforeach; ?>
+		</select>
+		</td></tr>
+		<tr><td>Days</td><td> 
+		<?php $days = $this->Day()->getArray();
+		foreach ($days as $value => $name) :?>
+			<?php echo $name ?>: <input name="day-<?php echo $value ?>" type="checkbox" value="1" /> 
+		<?php endforeach; ?>
+		</td></tr>
+		<tr><td>Hour On</td><td>
+		<select name="hourOn">
+		<?php for ($i = 0; $i < 24; $i++) :?>
+			<option value="<?php echo $i ?>">
+			 <?php
+                    if ($i < 10)
+                      echo "0$i";
+                    else
+                      echo "$i";
+			 ?>
+			</option>
+		<?php endfor; ?>
+		</select>
+		</td></tr>
+		<tr><td>Minute On</td><td>
+		<select name="minuteOn">
+		<?php for ($i = 0; $i < 60; $i++) :?>
+			<option value="<?php echo $i ?>">
+       <?php
+                    if ($i < 10)
+                      echo "0$i";
+                    else
+                      echo "$i";
+       ?>
+    </option>
+		<?php endfor; ?>
+		</select>
+		</td></tr>
+		<tr><td>Hour Off</td><td>
+		<select name="hourOff">
+		<?php for ($i = 0; $i < 24; $i++) :?>
+			<option value="<?php echo $i ?>">
+       <?php
+                    if ($i < 10)
+                      echo"0$i";
+                    else
+                      echo"$i";
+       ?>
+    </option>
+		<?php endfor; ?>
+		</select>
+		</td></tr>
+		<tr><td>Minute Off</td><td> 
+		<select name="minuteOff">
+		<?php for ($i = 0; $i < 60; $i++) :?>
+			<option value="<?php echo $i ?>">
+       <?php
+                    if ($i < 10)
+                      echo"0$i";
+                    else
+                      echo"$i";
+       ?>
+    </option>
+		<?php endfor; ?>
+		</select>
+		</td></tr>
+		<tr><td>Heating</td><td>
+		<input name="heatingOn" type="checkbox" value="1" />
+		</td></tr>
+    <tr><td>Temperature</td><td>
+    <select name="temperature">
+      <option value="5.0">5.0</option>
+      <option value="5.5">5.5</option>
+      <option value="6.0">6.0</option>
+      <option value="6.5">6.5</option>
+      <option value="7.0">7.0</option>
+      <option value="7.5">7.5</option>
+      <option value="8.0">8.0</option>
+      <option value="8.5">8.5</option>
+      <option value="9.0">9.0</option>
+      <option value="9.5">9.5</option>
+      <option value="10.0">10.0</option>
+      <option value="10.5">10.5</option>
+      <option value="11.0">11.0</option>
+      <option value="11.5">11.5</option>
+      <option value="12.0">12.0</option>
+      <option value="12.5">12.5</option>
+      <option value="13.0">13.0</option>
+      <option value="13.5">13.5</option>
+      <option value="14.0">14.0</option>
+      <option value="14.5">14.5</option>
+      <option value="15.0">15.0</option>
+      <option value="15.5">15.5</option>
+      <option value="16.0">16.0</option>
+      <option value="16.5">16.5</option>
+      <option value="17.0">17.0</option>
+      <option value="17.5">17.5</option>
+      <option value="18.0">18.0</option>
+      <option value="18.5">18.5</option>
+      <option value="19.0">19.0</option>
+      <option value="19.5">19.5</option>
+      <option value="20.0">20.0</option>
+      <option value="20.5">20.5</option>
+      <option value="21.0" selected>21.0</option>
+      <option value="21.5">21.5</option>
+      <option value="22.0">22.0</option>
+      <option value="22.5">22.5</option>
+      <option value="23.0">23.0</option>
+      <option value="23.5">23.5</option>
+      <option value="24.0">24.0</option>
+      <option value="24.5">24.5</option>
+      <option value="25.0">25.0</option>
+      <option value="25.5">25.5</option>
+      <option value="26.0">26.0</option>
+      <option value="26.5">26.5</option>
+      <option value="27.0">27.0</option>
+      <option value="27.5">27.5</option>
+      <option value="28.0">28.0</option>
+      <option value="28.5">28.5</option>
+      <option value="29.0">29.0</option>
+      <option value="29.5">29.5</option>
+      <option value="30.0">30.0</option>
+      <option value="30.5">30.5</option>
+      <option value="31.0">31.0</option>
+      <option value="31.5">31.5</option>
+      <option value="32.0">32.0</option>
+      <option value="32.5">32.5</option>
+      <option value="33.0">33.0</option>
+      <option value="33.5">33.5</option>
+      <option value="34.0">34.0</option>
+      <option value="34.5">34.5</option>
+      <option value="35.0">35.0</option>
+    </select>
+    </td></tr>
+		<tr><td>Water</td><td>
+    <input name="waterOn" type="checkbox" value="1" />
+    </td></tr>
+		<tr><td>Enabled</td><td>
+    <input name="enabled" type="checkbox" value="1" />
+    </td></tr>
+		<tr><td></td><td>
+		<input type="reset" value="Reset" />
+		<input id="multiAddSubmit" type="submit" value="Save" />
+		</td></tr>
+		</table>
+		</form>
+	</div>
+</div>
