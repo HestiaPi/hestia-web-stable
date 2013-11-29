@@ -66,3 +66,10 @@ $temp_2f = number_format($temp_3f, 2, '.', '');
   </fieldset>
   </form>
 </div>
+
+<!-- TODO: Change with a better logic rather than reloading the whole page
+Reload only this page every 10min. Dirty way to update the temperature 
+-->
+<script type="text/javascript">
+  var reloadme = setTimeout("location.reload(true);",600000);
+</script>
