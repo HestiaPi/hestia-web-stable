@@ -16,6 +16,7 @@ class Api_SchedulesController extends Zend_Controller_Action
 		unset($params['module']);
 		unset($params['controller']);
 		unset($params['action']);
+		unset($params['settings']);
 		
 		$error = "Save failed";
 		$result = false;

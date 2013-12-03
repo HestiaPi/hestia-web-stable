@@ -1,10 +1,10 @@
 <?php
-class Api_GroupsController extends Zend_Controller_Action
+class Api_SettingsController extends Zend_Controller_Action
 {
 	private $_model;
 	public function init()
 	{
-		$this->_model = new Caramite_Model_Groups();
+		$this->_model = new Caramite_Model_Settings();
 		$this->_helper->layout->disableLayout();
 		$this->_helper->viewRenderer->setNoRender();
 	}
