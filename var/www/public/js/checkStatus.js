@@ -1,16 +1,16 @@
 function updateImages(json) {
 	//Heating
 	if (json.Heating == "ON") {
-		$('#heating').attr('src', '/images/circle_green.png');
+		$('#heating').attr('src', '/images/led_on.png');
 	} else if (json.Heating == "OFF") {
-		$('#heating').attr('src', '/images/circle_red.png');
+		$('#heating').attr('src', '/images/led_off.png');
 	}
 
 	//Water
 	if (json.Water == "ON") {
-		$('#water').attr('src', '/images/circle_green.png');
+		$('#water').attr('src', '/images/led_on.png');
 	} else if (json.Water == "OFF") {
-		$('#water').attr('src', '/images/circle_red.png');
+		$('#water').attr('src', '/images/led_off.png');
 	}
 	
 	//Heating Boost

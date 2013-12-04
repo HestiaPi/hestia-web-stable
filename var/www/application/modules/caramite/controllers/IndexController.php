@@ -13,7 +13,7 @@ class Caramite_IndexController extends Zend_Controller_Action
     {    	
     	$this->view->headScript()->appendFile('/js/clock.js');
     	$this->view->headScript()->appendFile('/js/checkStatus.js');
-    	$this->view->headTitle('Schedules');
+    	$this->view->headTitle('Hestia');
     	
     	$_model = new Caramite_Model_Configuration();
     	$this->view->holidayFrom = strftime("%A %d %B %H:%M", (int) ($_model->getConfigurationByKey("holidayFrom")->value / 1000));
