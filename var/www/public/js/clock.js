@@ -3,9 +3,9 @@ function showTime() {
 	var utc = todayutc.getTime() + (todayutc.getTimezoneOffset() * 60000);
 	var today = new Date(utc);
 	
-	var h = today.getHours();
-	var m = today.getMinutes();
-	var s = today.getSeconds();
+	var h = todayutc.getHours();
+	var m = todayutc.getMinutes();
+	var s = todayutc.getSeconds();
 	// add a zero in front of numbers<10
 	h = checkTime(h);
 	m = checkTime(m);
