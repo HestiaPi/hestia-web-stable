@@ -1,7 +1,7 @@
 function showTime() {
 	var todayutc = new Date();
-	var utc = todayutc.getTime() + (todayutc.getTimezoneOffset() * 60000);
-	var today = new Date(utc);
+	//var utc = todayutc.getTime() + (todayutc.getTimezoneOffset() * 60000);
+	//var today = new Date(utc);
 	
 	var h = todayutc.getHours();
 	var m = todayutc.getMinutes();
