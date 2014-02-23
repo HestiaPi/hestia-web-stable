@@ -1,7 +1,10 @@
 <?php
-exec('/opt/boilercontrol/scripts/gettemperature.sh',$return);
+exec('/opt/boilercontrol/scripts/gettemperaturedht11.sh',$return);
 $temp_3f=$return[0]/1000;
 $temp_2f = number_format($temp_3f, 2, '.', '');
+
+exec('/opt/boilercontrol/scripts/gethumiditydht11.sh',$return);
+$humidity = $return[0];
 ?>
 <div class="boost_table">
 <table>
@@ -15,7 +18,7 @@ $temp_2f = number_format($temp_3f, 2, '.', '');
 </tr>
 <tr>
   <td>Humidity:</td>
-  <td><span id="humidity">32%<!--TODO: Placeholder only--></span></td>
+  <td><span id="humidity"><?php echo $humidity?>%</span></td>
 </tr>
 </table>
 <table>
