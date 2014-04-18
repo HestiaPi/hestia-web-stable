@@ -1,10 +1,23 @@
 <?php
-exec('/opt/boilercontrol/scripts/gettemperaturedht11.sh',$return);
+include 'hestia.inc';
+
+if($dht11){
+  //ToDo: Not always returned a value. 
+  //Maybe needs to be called by someone else periodically handling unanswered calls
+  //and storing correct values
+  exec('/opt/boilercontrol/scripts/gettemperaturedht11.sh',$return);
+  //exec('/opt/boilercontrol/scripts/getls.sh',$return);
+} else {
+  exec('/opt/boilercontrol/scripts/gettemperature.sh',$return);
+}
+
 $temp_3f=$return[0]/1000;
 $temp_2f = number_format($temp_3f, 2, '.', '');
 
-exec('/opt/boilercontrol/scripts/gethumiditydht11.sh',$return);
-$humidity = $return[0];
+if($dht11){
+  exec('/opt/boilercontrol/scripts/gethumiditydht11.sh',$return);
+  $humidity = $return[0];
+}
 ?>
 <div class="boost_table">
 <table>
@@ -16,10 +29,16 @@ $humidity = $return[0];
   <td>Temperature:</td>
   <td><span id="temperature"><?php echo $temp_2f?>°C</span></td><!--TODO: Symbol needs to be dynamically read from the db-->
 </tr>
-<tr>
-  <td>Humidity:</td>
-  <td><span id="humidity"><?php echo $humidity?>%</span></td>
-</tr>
+<?php 
+if($dht11){
+?>
+  <tr>
+    <td>Humidity:</td>
+    <td><span id="humidity"><?php echo $humidity?>%</span></td>
+  </tr>
+<?php
+}
+?>
 </table>
 <table>
 <tr>

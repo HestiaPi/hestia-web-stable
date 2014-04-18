@@ -1,0 +1,9 @@
+<?php
+//////////////////////////
+//  CONFIGURATION PAGE  //
+//////////////////////////
+
+//If DHT11 is used instead of DS18B20
+$dht11=false;
+
+?>
