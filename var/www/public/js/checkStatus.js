@@ -2,9 +2,14 @@ function updateImages(json) {
 	//Heating
 	if (json.Heating == "ON") {
 		$('#heating').attr('src', '/images/led_on.png');
+//		$('#heatingset').css('visibility', 'visible');
 	} else if (json.Heating == "OFF") {
 		$('#heating').attr('src', '/images/led_off.png');
+//		$('#heatingset').css('visibility', 'hidden');
 	}
+	
+	//Update DesiredTemp
+	$('#temperatureset').html(json.DesiredTemp);
 
 	//Water
 	if (json.Water == "ON") {

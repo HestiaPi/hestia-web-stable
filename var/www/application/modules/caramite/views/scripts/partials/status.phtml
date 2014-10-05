@@ -24,17 +24,20 @@ if($dht11){
 <tr>
 	<td>Time:</td>
 	<td><span id="clock"></span></td>
+	<td></td>
 </tr>
 <tr>
   <td>Temperature:</td>
   <td><span id="temperature"><?php echo $temp_2f?>°C</span></td><!--TODO: Symbol needs to be dynamically read from the db-->
+  <td id="heatingset" style="visibility:visible;">Set: <span id="temperatureset">22</span>°C &nbsp;<img id="setminus" src="/images/minus.png" />&nbsp;<img id="setplus" src="/images/plus.png" /></td>
 </tr>
-<?php 
+<?php
 if($dht11){
 ?>
   <tr>
     <td>Humidity:</td>
     <td><span id="humidity"><?php echo $humidity?>%</span></td>
+    <td></td>
   </tr>
 <?php
 }
@@ -42,18 +45,18 @@ if($dht11){
 </table>
 <table>
 <tr>
-	<td>Hot Water:</td>
-	<td><img id="water" src="/images/led_off.png" /></td>
-	<td>&nbsp;&nbsp;Boost:</td>
-	<td class="small"><img id="waterBoost" src="/images/off.png" /> &nbsp;
-		<span id="waterBoostTime"></span></td>
-</tr>
-<tr>
 	<td>Heating:</td>
 	<td><img id="heating" src="/images/led_off.png" /></td>
 	<td>&nbsp;&nbsp;Boost:</td>
 	<td class="small"><img id="heatingBoost" src="/images/off.png" /> &nbsp;
 		<span id="heatingBoostTime"></span></td>
+</tr>
+<tr>
+  <td>Hot Water:</td>
+  <td><img id="water" src="/images/led_off.png" /></td>
+  <td>&nbsp;&nbsp;Boost:</td>
+  <td class="small"><img id="waterBoost" src="/images/off.png" /> &nbsp;
+    <span id="waterBoostTime"></span></td>
 </tr>
 </table>
 </div>
