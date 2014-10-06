@@ -69,10 +69,10 @@ if($dht11){
     	<option value="1">1 minute</option> <!-- TODO: Remove -->
     	<option value="2">2 minutes</option> <!-- TODO: Remove -->
     	<?php 
-    	$default = 60;
+    	$default = json.boostTimeH;
     	for ($i = 10; $i <= 180; $i = $i + 10) :
     	?>
-    	<option value="<?php echo $i?>" <?php if ($i == $default) echo 'selected="selected"'?>><?php echo $i?> minutes</option>
+    	<option value="<?php echo $i?>"><?php echo $i?> minutes</option>
     	<?php endfor; ?>
     </select>
   </fieldset>
@@ -86,7 +86,7 @@ if($dht11){
     <select name="time" id="waterTime">
       <option value="1">1 minute</option> <!-- TODO: Remove -->
     	<?php 
-    	$default = 60;
+    	$default = json.boostTimeW;
     	for ($i = 10; $i <= 180; $i = $i + 10) :
     	?>
     	<option value="<?php echo $i?>" <?php if ($i == $default) echo 'selected="selected"'?>><?php echo $i?> minutes</option>
