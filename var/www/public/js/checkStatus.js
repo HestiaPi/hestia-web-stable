@@ -112,7 +112,7 @@ function setupDialog(dialogId, postName, timeId, buttonId) {
           }
         },
         close: function() {
-          $(timeId).val( "60" );
+          //$(timeId).val( "60" );//commented out in order to leave last boost time preselected
         }
       });
 	
@@ -134,13 +134,29 @@ function setupDialog(dialogId, postName, timeId, buttonId) {
 		} else if ($(buttonId).attr('src') == '/images/off.png') {
 			$(timeId).prop('disabled', false);
 			$( dialogId ).dialog( "open" );
+		}		
+	});
+}
+
+function setupButton(buttonId) {	
+	$(buttonId).click(function() {
+		if ($(buttonId).attr('src') == '/images/minus.png') {
+			$('#temperatureset').html((parseFloat($('#temperatureset').text())-0.5).toString());
+			//call decDesiredTemp($time)
+			//$.post("/api/heating/boost/toggle/decdesiredtemp", function(json) { $('#temperatureset').html((parseFloat($('#temperatureset').text())-0.5).toString()); }, "json");
+			$.post("/api/heating/boost/toggle/decdesiredtemp", function(json) {}, "json");
+		} else if ($(buttonId).attr('src') == '/images/plus.png') {
+			$('#temperatureset').html((parseFloat($('#temperatureset').text())+0.5).toString());
+			//call incDesiredTemp($time);
+			//$.post("/api/heating/boost/toggle/incdesiredtemp", function(json) { $('#temperatureset').html((parseFloat($('#temperatureset').text())+0.5).toString()); }, "json");
+			$.post("/api/heating/boost/toggle/incdesiredtemp", function(json) {}, "json");
 		}
-		
-		
 	});
 }
 
 $(document).ready(function() {
 	setupDialog("#heating-boost-dialog", "heating", "#heatTime", "#heatingBoost");
 	setupDialog("#water-boost-dialog", "water", "#waterTime", "#waterBoost");
+	setupButton("#setminus");
+	setupButton("#setplus");
 });

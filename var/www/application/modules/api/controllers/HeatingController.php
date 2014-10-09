@@ -28,6 +28,10 @@ class Api_HeatingController extends Zend_Controller_Action
 			$output = $this->_model->setBoostHeating($time);
 		} else if ($data == "water") {
 			$output = $this->_model->setBoostWater($time);
+		} else if ($data == "decdesiredtemp") {
+			$output = $this->_model->decDesiredTemp();
+		} else if ($data == "incdesiredtemp") {
+			$output = $this->_model->incDesiredTemp();
 		} else {
 			$output['Result'] = "ERROR";
 			$output['Message'] = "Invalid toggle item";

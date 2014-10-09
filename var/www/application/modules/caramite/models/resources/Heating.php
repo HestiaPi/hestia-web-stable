@@ -20,6 +20,16 @@ class Caramite_Resource_Heating extends SF_Model_Resource_Socket_Abstract
 		return $this->send("boost:water,time:$time");
 	}
 	
+	public function incDesiredTemp()
+	{
+		return $this->send("boost:incdesiredtemp");
+	}
+	
+	public function decDesiredTemp()
+	{
+		return $this->send("boost:decdesiredtemp");
+	}
+	
 	public function getStatus()
 	{
 		return $this->send("status:onoroff");

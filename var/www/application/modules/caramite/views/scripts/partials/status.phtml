@@ -24,12 +24,11 @@ if($dht11){
 <tr>
 	<td>Time:</td>
 	<td><span id="clock"></span></td>
-	<td></td>
 </tr>
 <tr>
   <td>Temperature:</td>
   <td><span id="temperature"><?php echo $temp_2f?>°C</span></td><!--TODO: Symbol needs to be dynamically read from the db-->
-  <td id="heatingset" style="visibility:visible;">Set: <span id="temperatureset">22</span>°C &nbsp;<img id="setminus" src="/images/minus.png" />&nbsp;<img id="setplus" src="/images/plus.png" /></td>
+  <td id="heatingset" style="visibility:visible;"><img id="setminus" src="/images/minus.png" />&nbsp;<img id="setplus" src="/images/plus.png"/>&nbsp;Set: <span id="temperatureset">22</span>°C</td>
 </tr>
 <?php
 if($dht11){
@@ -69,7 +68,6 @@ if($dht11){
     	<option value="1">1 minute</option> <!-- TODO: Remove -->
     	<option value="2">2 minutes</option> <!-- TODO: Remove -->
     	<?php 
-    	$default = json.boostTimeH;
     	for ($i = 10; $i <= 180; $i = $i + 10) :
     	?>
     	<option value="<?php echo $i?>"><?php echo $i?> minutes</option>
@@ -86,10 +84,9 @@ if($dht11){
     <select name="time" id="waterTime">
       <option value="1">1 minute</option> <!-- TODO: Remove -->
     	<?php 
-    	$default = json.boostTimeW;
     	for ($i = 10; $i <= 180; $i = $i + 10) :
     	?>
-    	<option value="<?php echo $i?>" <?php if ($i == $default) echo 'selected="selected"'?>><?php echo $i?> minutes</option>
+    	<option value="<?php echo $i?>"><?php echo $i?> minutes</option>
     	<?php endfor; ?>
     </select>
   </fieldset>
