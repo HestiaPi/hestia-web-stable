@@ -11,15 +11,15 @@ function updateImages(json) {
 	//Update DesiredTemp
 	$('#temperatureset').html(json.DesiredTemp);
 
-	//Preselect Previously used Boost Timeouts
-	$("#heatTime option").filter(function() {
-	    return $(this).text() == json.boostTimeH+" minutes";
-	}).get(0).selected = true;
-	
-	$("#waterTime option").filter(function() {
-	    return $(this).text() == json.boostTimeW+" minutes";
-	}).get(0).selected = true;
-	
+ 	//Preselect Previously used Boost Timeouts
+ 	if (json.boostTimeH) {
+ 		document.getElementById('heatTime').value=json.boostTimeH;
+ 	}
+ 	
+ 	if (json.boostTimeW) {
+ 		document.getElementById('waterTime').value=json.boostTimeW;
+ 	}
+ 	
 	//Water
 	if (json.Water == "ON") {
 		$('#water').attr('src', '/images/led_on.png');
