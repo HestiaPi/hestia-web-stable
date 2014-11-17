@@ -1,3 +1,7 @@
+<?php
+  exec('cat /opt/boilercontrol/version',$versione);
+  exec('cat /var/www/version',$versionw);
+?>
 <script type="text/javascript">
 function success(data) {
 	var text = "";
@@ -326,14 +330,31 @@ $(document).ready(function() {
   <table>
     <tr>
       <td>
-        Connect to external HestiaPi server:&nbsp;
+        Current Engine version:&nbsp;
       </td>
       <td>
-        <form action="http://www.hestiapi.com/upgrade/check-0.1.htm">
-            <input type="submit" value="Check">
+        <?php echo $versione[0]?>&nbsp;&nbsp;&nbsp;
+      </td>
+      <td>
+        <form action="http://www.hestiapi.com/upgrade/engine/check-<?php echo $versione[0]?>.htm">
+            <input type="submit" value="&nbsp;Check&nbsp;">
         </form>
       </td>
     </tr>
+    <tr>
+      <td>
+        Current Web version:&nbsp;
+      </td>
+      <td>
+        <?php echo $versionw[0]?>&nbsp;&nbsp;&nbsp;
+      </td>
+      <td>
+        <form action="http://www.hestiapi.com/upgrade/web/check-<?php echo $versionw[0]?>.htm">
+            <input type="submit" value="&nbsp;Check&nbsp;">
+        </form>
+      </td>
+    </tr>
+
   </table>
 
 
