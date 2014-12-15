@@ -9,6 +9,8 @@ if($dht11){
   //exec('/opt/boilercontrol/scripts/getls.sh',$return);
 } else {
   exec('/opt/boilercontrol/scripts/gettemperature.sh',$return);
+  exec('cat /opt/boilercontrol/scripts/label1',$label1);
+  exec('cat /opt/boilercontrol/scripts/label2',$label2);
 }
 
 $temp_3f=$return[0]/1000;
@@ -44,14 +46,14 @@ if($dht11){
 </table>
 <table>
 <tr>
-	<td>Heating:</td>
+	<td><?php echo $label1[0]?>:</td>
 	<td><img id="heating" src="/images/led_off.png" /></td>
 	<td>&nbsp;&nbsp;Boost:</td>
 	<td class="small"><img id="heatingBoost" src="/images/off.png" /> &nbsp;
 		<span id="heatingBoostTime"></span></td>
 </tr>
 <tr>
-  <td>Hot Water:</td>
+  <td><?php echo $label2[0]?>:</td>
   <td><img id="water" src="/images/led_off.png" /></td>
   <td>&nbsp;&nbsp;Boost:</td>
   <td class="small"><img id="waterBoost" src="/images/off.png" /> &nbsp;
