@@ -1,3 +1,8 @@
+<?php
+  exec('cat /opt/boilercontrol/scripts/label1',$label1);
+  exec('cat /opt/boilercontrol/scripts/label2',$label2);
+?>
+
 <script type="text/javascript">
     $(document).ready(function () {
         $('#tableContainer').jtable({
@@ -72,7 +77,7 @@
                     ?> }
                 },
                 heatingOn: {
-                    title: 'Heating',
+                    title: '<?php echo $label1[0]?>',
                     type: 'checkbox',
                     values: { '0': 'Off', '1': 'On' },
                 },
@@ -142,7 +147,7 @@
                        defaultValue: '21.0'
                 },
                 waterOn: {
-                    title: 'Water',
+                    title: '<?php echo $label2[0]?>',
                     type: 'checkbox',
                     values: { '0': 'Off', '1': 'On' },
                 },
