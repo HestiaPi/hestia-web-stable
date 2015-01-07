@@ -96,7 +96,7 @@ function setupDialog(dialogId, postName, timeId, buttonId) {
         width: 250,
         modal: true,
         buttons: {
-          "Toggle": function() {
+          "Boost": function() {
         	  $.post("/api/heating/boost/toggle/" + postName +"/time/" + 
         			  $(timeId).val(), function(json) {
       			if (json.Result == "OK") {
