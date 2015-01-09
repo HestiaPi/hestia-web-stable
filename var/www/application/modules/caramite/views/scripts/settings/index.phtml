@@ -1,4 +1,6 @@
 <?php
+  exec('df | grep rootfs  | awk \'{print $5}\'', $freediskspace);
+  exec('/opt/boilercontrol/scripts/getcputemperature.sh', $cputemperature);
   exec('cat /opt/boilercontrol/version',$versione);
   exec('cat /var/www/version',$versionw);
   exec('/opt/boilercontrol/scripts/geteth0ip.sh',$ethip);
@@ -80,6 +82,19 @@ $(document).ready(function() {
 </script>
 
 <div id="settings">
+<hr>
+  <h3><a href="#">Device Status</a></h3>
+<hr>
+  <table>
+    <tr>
+      <td>Free space:</td>
+      <td><?php echo $freediskspace[0]?></td>
+    </tr>
+    <tr>
+      <td>CPU Temperature:</td>
+      <td><?php echo $cputemperature[0]/10?>&#8451;</td>
+    </tr>
+  </table>
 <hr>
 	<h3><a href="#">Web Access</a></h3>
 <hr>
