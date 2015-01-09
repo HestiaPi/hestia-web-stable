@@ -1,5 +1,5 @@
 <?php
-  exec('df | grep rootfs  | awk \'{print $5}\'', $freediskspace);
+  exec('df | grep rootfs  | awk \'{print $5}\'', $useddiskspace);
   exec('/opt/boilercontrol/scripts/getcputemperature.sh', $cputemperature);
   exec('cat /opt/boilercontrol/version',$versione);
   exec('cat /var/www/version',$versionw);
@@ -87,8 +87,8 @@ $(document).ready(function() {
 <hr>
   <table>
     <tr>
-      <td>Free space:</td>
-      <td><?php echo $freediskspace[0]?></td>
+      <td>Used disk space:</td>
+      <td><?php echo $useddiskspace[0]?></td>
     </tr>
     <tr>
       <td>CPU Temperature:</td>
