@@ -1,6 +1,25 @@
 <?php
-  exec('df | grep rootfs  | awk \'{print $5}\'', $useddiskspace);
+  exec('/opt/boilercontrol/scripts/getfreediskspace.sh', $freediskspace); // This actually returns the used space
+  if (!$freediskspace)
+    $freediskspace[0]="Unavailable";
+  else if ($freediskspace[0] < 85)
+    $freediskspacecolor = "green";
+  else if ($freediskspace[0] < 95)
+    $freediskspacecolor = "orange";
+  else
+    $freediskspacecolor = "red";
+  
   exec('/opt/boilercontrol/scripts/getcputemperature.sh', $cputemperature);
+  if (!$cputemperature)
+    $cputemperature[0]="--";
+  else if ($cputemperature[0] < 700)
+    $cputemperaturecolor = "green";
+  else if ($cputemperature[0] < 800)
+    $cputemperaturecolor = "orange";
+  else
+    $cputemperaturecolor = "red";
+  
+    
   exec('cat /opt/boilercontrol/version',$versione);
   exec('cat /var/www/version',$versionw);
   exec('/opt/boilercontrol/scripts/geteth0ip.sh',$ethip);
@@ -27,6 +46,24 @@
   exec('/opt/boilercontrol/scripts/gettz.sh',$tz);
   if (!$tz)
     $tz[0]="GMT";
+  exec('/opt/boilercontrol/scripts/getssid.sh', $ssid);
+  if (!$ssid)
+    $ssid[0]="Disabled";
+  exec('/opt/boilercontrol/scripts/getwifiinfo.sh', $wifiinfo);
+  if (!$wifiinfo)
+    $wifiinfo[0]="--";
+  else if ($wifiinfo[0] > 80) 
+    $wifiicon = 6;
+  else if ($wifiinfo[0] > 60) 
+    $wifiicon = 5;
+  else if ($wifiinfo[0] > 40) 
+    $wifiicon = 4;
+  else if ($wifiinfo[0] > 20) 
+    $wifiicon = 3;
+  else if ($wifiinfo[0] > 10) 
+    $wifiicon = 2;
+  else 
+    $wifiicon = 1;
 ?>
 <script type="text/javascript">
 function success(data) {
@@ -87,12 +124,12 @@ $(document).ready(function() {
 <hr>
   <table>
     <tr>
-      <td>Used disk space:</td>
-      <td><?php echo $useddiskspace[0]?></td>
+      <td>Used space:</td>
+      <td style=color:<?php echo $freediskspacecolor?>><?php echo $freediskspace[0]?></td>
     </tr>
     <tr>
       <td>CPU Temperature:</td>
-      <td><?php echo $cputemperature[0]/10?>&#8451;</td>
+      <td style=color:<?php echo $cputemperaturecolor?>><?php echo $cputemperature[0]/10?>&#8451;</td>
     </tr>
   </table>
 <hr>
@@ -205,6 +242,14 @@ $(document).ready(function() {
   </table></br>
   Wireless connection details:</br>
    <table>
+    <tr>
+      <td style="vertical-align: bottom;">
+        SSID: <?php echo $ssid[0]?> 
+      </td>
+      <td >
+        <img title="<?php echo $wifiinfo[0]?>%" style="vertical-align: bottom;" src=/images/wifi/<?php echo $wifiicon?>.png>
+      </td>
+    </tr>
     <tr>
       <td>
         IP Address:
